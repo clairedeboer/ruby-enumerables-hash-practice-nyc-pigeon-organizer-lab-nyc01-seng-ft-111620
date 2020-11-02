@@ -5,9 +5,9 @@ def nyc_pigeon_organizer(data)
         if !final_object[name]
           final_object[name] = {}
         end
-        if !final_object[name][key]
-          final_object[name][key] = []
-        end
+        # if !final_object[name][key]
+        #   final_object[name][key] = []
+        # end
         named_pigeon_attributes = final_object[name][key]
         named_pigeon_attributes.push(inner_key.to_s)
       end
