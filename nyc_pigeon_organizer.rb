@@ -1,16 +1,20 @@
 def nyc_pigeon_organizer(data)
-  final_results = data.each_with_object({}) do |(key, value), final_object|
-    value.each do |inner_key, names|
-      names.each do |name|
-        if !final_object[name]
-          final_object[name] = {}
+  data.each_with_object({}) { |(outer_key, value), output| 
+  # outer_key == color || gender || lives
+    inner_keys = data[outer_key].keys
+    #  --> inner_keys
+    inner_keys.each { |inner_key| 
+      names = data[outer_key][inner_key]
+      names.each { |name| 
+        if !output[name]
+          output[name] = {}
         end
-        if !final_object[name][key]
-          final_object[name][key] = []
+        if !output[name][outer_key]
+          output[name][outer_key] = []
         end
-        named_pigeon_attributes = final_object[name][key]
-        named_pigeon_attributes.push(inner_key.to_s)
-      end
-    end
-  end
+        output[name][outer_key].push(inner_key)
+      }
+    }
+    output
+  }
 end
